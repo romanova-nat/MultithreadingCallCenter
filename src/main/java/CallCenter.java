@@ -31,7 +31,12 @@ public class CallCenter {
     public void workToOperators() throws InterruptedException {
         while (true) {
             Thread.sleep(TIME_FOR_PROCESSING);
-            System.out.println(Thread.currentThread().getName() + " обработал " + queue.remove());
+            Call number = queue.remove();
+            if (number.equals(null)) {
+                System.out.println("Еще никто не звонил");
+                break;
+            }
+            System.out.println(Thread.currentThread().getName() + " обработал " + number);
         }
     }
 }
